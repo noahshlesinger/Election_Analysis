@@ -26,5 +26,9 @@ The analysis of the election show that:
   * Winning Candidate, who received "x%" of the vote and "y" number of votes.
 
 ## Challenge Overview
-
+The election comission has requested some additional data to complete the audit.
+1. The voter turnout for each county
+2. The percentage of votes from each county out of the total count
+3. The county with the highest turnout.
+4. Print All Election Results to the Command Line and Saved to a Text File
 ## Challenge Summary
