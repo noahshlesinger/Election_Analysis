@@ -1,7 +1,7 @@
-# Election_Analysis
+# Election Analysis
 ## Project Overview
-The purpose of this election audit is to independently determine the the winner of the recent local congressional electoin and send the results to the Colorado board of Elections. 
-## Election_Audit Results:
+The purpose of this election audit is to independently determine the the winner of the recent local congressional election and send the results to the Colorado board of Elections. 
+## Election Audit Results:
 
 The following points are main metrics and outcomes of the audit:
 
@@ -30,7 +30,7 @@ The following points are main metrics and outcomes of the audit:
 
 -------------
 
-* To determine the number of votes for each county and the percentage of the total votes that each one held, the following code was implemented: 
+* To determine the number of votes for each county and the percentage of the total votes that each one held, the following code was implemented. 
 
 -------------
 
@@ -54,7 +54,7 @@ The following points are main metrics and outcomes of the audit:
 
 -------------
 
-* The following code determines the county with the most votes.
+* The following code determines the county with the most votes. It tracks the votes for eaach county and then shares the results of the county with the most votes to the text file.
 
 ------------
 
@@ -72,63 +72,37 @@ The following points are main metrics and outcomes of the audit:
 
 **county_results = (f'{county_name} county: {county_vote_percentage:.1f}% ({votes_co:,})\n')** (defines the county's results including it's name, percentage, and vote count)
 
+**if (votes_co > largest_county_votes) and (county_vote_percentage > largest_county_percentage):** (Initiates an if statement that determines the county with the largest vote count and what that count is)
 
+**txt_file.write(county_results)** (writes the results to the text file concerning the county specific results)
 
 ------------
 
+* The next section collects the results for each candidate and writes them in a summary to the text file.
 
-* Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
+------------
 
-* Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
+    for candidate_name in candidate_votes:
 
+        # Retrieve vote count and percentage
+        votes = candidate_votes.get(candidate_name)
+        vote_percentage = float(votes) / float(total_votes) * 100
+        candidate_results = (
+            f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n\n")
 
+------------
 
+* Lastly, the following code determines the winner of the election, their vote count and what percentage of the total votes they received:
 
+------------
 
+        if (votes > winning_count) and (vote_percentage > winning_percentage):
+            winning_count = votes
+            winning_candidate = candidate_name
+            winning_percentage = vote_percentage
 
+------------
 
+## Eleciton Audit Summary
 
-
-
-
-
-
-
-
-
-
-
-
-
-A Colorado Board of Elections employees has given you the following tasks to complete the eleciton audit of a recent local congressional election.
-1. Calculate the total number of votes cast.
-2. Get a complete list of candidates who received votes.
-3. Calculate teh total number of votes each candidate received.
-4. Calculate the percentage of votes each candidate won.
-5. Determine the winner of the election based on popular vote.
-
-## Resources
-* Data Source: election_results.csv
-* Software: Python 3.10.1, Visual Studio Code, 1.38.1
-
-## Summary
-The analysis of the election show that:
-* There were "x" votes cast in the election.
-* The candidates were:
-  * Candidate 1
-  * Candidate 2
-  * Candidate 3
-* The candidate results were:
-  * Candidate 1 received"x%" of the vote and "Y" number of votes.
-  * Candidate 2 received"x%" of the vote and "Y" number of votes.
-  * Candidate 3 received"x%" of the vote and "Y" number of votes.
-* The winner of the election was:
-  * Winning Candidate, who received "x%" of the vote and "y" number of votes.
-
-## Challenge Overview
-The election comission has requested some additional data to complete the audit.
-1. The voter turnout for each county
-2. The percentage of votes from each county out of the total count
-3. The county with the highest turnout.
-4. Print All Election Results to the Command Line and Saved to a Text File
-## Challenge Summary
+This script of code has been constructed to read and print data from the CSV file as if it were any CSV file with any data with three columns. There are references in the code to each row and column pair, signifying that there is an assumption that every data point in a given column type and that each row of data is associated with a single voter. This code isn't specific to the colorado congressional election vote and can be used for any election as long as the data is formatted as just described. However, slight modifications requiring little adjustment of the script can allow for more inputs. For example, if each vote had the voters' age in the fourth column of the csv file data, then the code can stay exaclty as it is with only the addeitional code to analyzed and compare votes for different candidate in a given age range or give an aerage voter age for each county. The other convenient thing about this code is that no additional editing is required if there are more counties involved, more candidates to vote for, or more voters turning in ballots. It would simply increase the lists and dictionaries that would eventually be printed in the tewxt file for the summary as normal. 
